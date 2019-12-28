@@ -13,3 +13,7 @@
 Visit `Preferences->Editor->Live Templates` and ensure that the *MODX* Live Templates are enabled.
 
 ----
+
+### Example
+##### mf-print_r
+![gif](http://g.recordit.co/QhjdD8J6Pi.gif)
