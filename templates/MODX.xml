@@ -50,7 +50,7 @@
   </template>
   <template name="mf--mfilter2" value="{$_modx-&gt;runSnippet('!mFilter2', [&#10;    'element' =&gt; 'msProducts',&#10;&#9;'parents' =&gt; '$parents$',&#10;&#9;'showHidden' =&gt; $showHidden$,&#10;&#9;'filters' =&gt; 'resource|parent:categories,&#10;&#9;&#9;        msoption|lens_tonality,&#10;&#9;&#9;        msoption|lens_curve,&#10;&#9;&#9;        msoption|lens_opticalpower,&#10;&#9;&#9;        msoption|lens_size,&#10;&#9;&#9;        ms|vendor:vendors&#10;    &#9;        ',&#10;])}" description="" toReformat="false" toShortenFQNames="true">
     <variable name="parents" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
-    <variable name="showHidden" expression="" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
+    <variable name="showHidden" expression="enum(&quot;1&quot;,&quot;0&quot;)" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="TPL" value="true" />
@@ -83,7 +83,8 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-pls" value="{$_pls['$END$']}" description="" toReformat="false" toShortenFQNames="true">
+  <template name="mf-pls" value="{$_pls['$pls$']}$END$" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="pls" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="TPL" value="true" />
@@ -141,7 +142,8 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-print_r" value="&lt;pre&gt;&#10;{$END$ | print_r}&#10;&lt;/pre&gt;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="mf-print_r" value="&lt;pre&gt;&#10;{$print$ | print_r}&#10;&lt;/pre&gt;&#10;$END$" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="print" expression="enum(&quot;$_modx-&gt;user&quot;,&quot;$_modx-&gt;context&quot;,&quot;$_modx-&gt;resource&quot;,&quot;$_modx-&gt;config&quot;,&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="TPL" value="true" />
@@ -181,14 +183,14 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-crumbs" value="{'!pdoCrumbs' | snippet: [&#10;    'outputSeparator' =&gt; '$outputSeparator$',&#10;&#9;'tpl' =&gt; '$tpl$',&#10;&#9;'tplCurrent' =&gt; '$type$$tplCurrent$',&#10;&#9;'showCurrent' =&gt; '$type$$showCurrent$',&#10;&#9;'showHome' =&gt; '$type$$showHome$',&#10;&#9;'showLog' =&gt; '$showLog$'$param$&#10;]}&#10;{$END$}" description="pdoCrumbs" toReformat="false" toShortenFQNames="true">
+  <template name="mf-crumbs" value="{'!pdoCrumbs' | snippet: [&#10;    'outputSeparator' =&gt; '$outputSeparator$',&#10;&#9;'tpl' =&gt; '$type$$tpl$',&#10;&#9;'tplCurrent' =&gt; '$type$$tplCurrent$',&#10;&#9;'showCurrent' =&gt; '$type$$showCurrent$',&#10;&#9;'showHome' =&gt; '$type$$showHome$',&#10;&#9;'showLog' =&gt; '$showLog$'$param$&#10;]}&#10;{$END$}" description="pdoCrumbs" toReformat="false" toShortenFQNames="true">
     <variable name="outputSeparator" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="tpl" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="type" expression="enum(&quot;@INLINE &quot;,&quot;@FILE&quot;,&quot;@TEMPLATE&quot;,&quot;@CODE &quot;,&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
     <variable name="tplCurrent" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="showCurrent" expression="" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
-    <variable name="showHome" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
-    <variable name="showLog" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
+    <variable name="showCurrent" expression="enum(&quot;1&quot;,&quot;0&quot;)" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
+    <variable name="showHome" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
+    <variable name="showLog" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <variable name="param" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
@@ -211,19 +213,6 @@
     <variable name="tplInner" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="tplInnerRow" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="tplInnerHere" expression="" defaultValue="" alwaysStopAt="true" />
-    <context>
-      <option name="HTML" value="true" />
-      <option name="TPL" value="true" />
-      <option name="Twig" value="true" />
-    </context>
-  </template>
-  <template name="mf--crumbs" value="{$_modx-&gt;runSnippet('!pdoCrumbs', [&#10;    'outputSeparator' =&gt; '$1$',&#10;&#9;'tpl' =&gt; '$2$',&#10;&#9;'tplCurrent' =&gt; '$3$',&#10;&#9;'showCurrent' =&gt; '$showCurrent$',&#10;&#9;'showHome' =&gt; '$showHome$',&#10;&#9;'showLog' =&gt; '$showLog$'&#10;&#9;{$END$}&#10;]}" description="pdoCrumbs" toReformat="false" toShortenFQNames="true">
-    <variable name="1" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="2" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="3" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="showCurrent" expression="enum(&quot;1&quot;,&quot;0&quot;)" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
-    <variable name="showHome" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
-    <variable name="showLog" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="TPL" value="true" />
@@ -299,7 +288,7 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf--runsneppet" value="{$_modx-&gt;runSnippet('!$NAME$',[&#10;    &quot;$PARAM$&quot; =&gt; &quot;$VALUE$&quot;,&#10;    $END$ &#10;])}" description="run snippet" toReformat="false" toShortenFQNames="true">
+  <template name="mf--runsnippet" value="{$_modx-&gt;runSnippet('!$NAME$',[&#10;    &quot;$PARAM$&quot; =&gt; &quot;$VALUE$&quot;,&#10;    $END$ &#10;])}" description="run snippet" toReformat="false" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="&quot;pdoResources&quot;" alwaysStopAt="true" />
     <variable name="PARAM" expression="" defaultValue="&quot;parents&quot;" alwaysStopAt="true" />
     <variable name="VALUE" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
@@ -377,7 +366,7 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-pdoResources" value="{'!pdoResources' | snippet: [&#10;    'parents' =&gt;'$parents$,&#10;    'limit' =&gt; $limit$,&#10;    'tpl' =&gt; '$tpl$',&#10;    'includeTVs' =&gt; '$includeTVs$',&#10;    'tvPrefix' =&gt; '$tvPrefix$',&#10;&#9;'sortby' =&gt; '{ &quot;menuindex&quot;:&quot;$sort$&quot; }',&#10;&#9;'includeContent' =&gt; $includeContent$&#10;])}&#10; $END$ " description="run snippet" toReformat="false" toShortenFQNames="true">
+  <template name="mf-pdoResources" value="{'!pdoResources' | snippet: [&#10;    'parents' =&gt;'$parents$',&#10;    'limit' =&gt; $limit$,&#10;    'tpl' =&gt; '$tpl$',&#10;    'includeTVs' =&gt; '$includeTVs$',&#10;    'tvPrefix' =&gt; '$tvPrefix$',&#10;&#9;'sortby' =&gt; '{ &quot;menuindex&quot;:&quot;$sort$&quot; }',&#10;&#9;'includeContent' =&gt; $includeContent$&#10;]}&#10; $END$ " description="run snippet" toReformat="false" toShortenFQNames="true">
     <variable name="parents" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <variable name="limit" expression="" defaultValue="&quot;10&quot;" alwaysStopAt="true" />
     <variable name="tpl" expression="" defaultValue="" alwaysStopAt="true" />
@@ -385,6 +374,21 @@
     <variable name="tvPrefix" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="sort" expression="enum(&quot;ASC&quot;,&quot;DESC&quot;)" defaultValue="ASC" alwaysStopAt="true" />
     <variable name="includeContent" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="TPL" value="true" />
+      <option name="Twig" value="true" />
+    </context>
+  </template>
+  <template name="mf--crumbs" value="{$_modx-&gt;runSnippet('!pdoCrumbs', [&#10;    'outputSeparator' =&gt; '$outputSeparator$',&#10;&#9;'tpl' =&gt; '$type$$tpl$',&#10;&#9;'tplCurrent' =&gt; '$type$$tplCurrent$',&#10;&#9;'showCurrent' =&gt; '$type$$showCurrent$',&#10;&#9;'showHome' =&gt; '$type$$showHome$',&#10;&#9;'showLog' =&gt; '$showLog$'$param$&#10;])}&#10;{$END$}" description="pdoCrumbs" toReformat="false" toShortenFQNames="true">
+    <variable name="outputSeparator" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="tpl" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="type" expression="enum(&quot;@INLINE &quot;,&quot;@FILE&quot;,&quot;@TEMPLATE&quot;,&quot;@CODE &quot;,&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="tplCurrent" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="showCurrent" expression="enum(&quot;1&quot;,&quot;0&quot;)" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
+    <variable name="showHome" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
+    <variable name="showLog" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
+    <variable name="param" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="TPL" value="true" />
