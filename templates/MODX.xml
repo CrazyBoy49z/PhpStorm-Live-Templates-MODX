@@ -10,7 +10,7 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf--pdomenu" value="{$_modx-&gt;runSnippet('!pdoMenu', [&#10;    'parents' =&gt;'$parents$',&#10;&#9;'level'=&gt;'$level$',&#10;&#9;'includeTVs' =&gt; '$includeTVs$',&#10;&#9;'tvPrefix' =&gt; '$tvPrefix$',&#10;&#9;'tpl' =&gt; '$type$$tpl$',&#10;&#9;'tplOuter' =&gt; '$type$$tplOuter$',&#10;&#9;'tplHere' =&gt; '$type$$tplHere$',&#10;&#9;'tplParentRow' =&gt; '$type$$tplParentRow$',&#10;&#9;'tplParentRowHere' =&gt; '$type$$tplParentRowHere$',&#10;&#9;'tplParentRowActive' =&gt; '$type$$tplParentRowActive$',&#10;&#9;'tplInner' =&gt; '$type$$tplInner$',&#10;&#9;'tplInnerRow' =&gt; '$type$$tplInnerRow$',&#10;&#9;'tplInnerHere' =&gt; '$type$$tplInnerHere$'&#10;]}" description="pdoMenu" toReformat="false" toShortenFQNames="true">
+  <template name="mf--pdoMenu" value="{$_modx-&gt;runSnippet('!pdoMenu', [&#10;    'parents' =&gt;'$parents$',&#10;&#9;'level'=&gt;'$level$',&#10;&#9;'includeTVs' =&gt; '$includeTVs$',&#10;&#9;'tvPrefix' =&gt; '$tvPrefix$',&#10;&#9;'tpl' =&gt; '$type$$tpl$',&#10;&#9;'tplOuter' =&gt; '$type$$tplOuter$',&#10;&#9;'tplHere' =&gt; '$type$$tplHere$',&#10;&#9;'tplParentRow' =&gt; '$type$$tplParentRow$',&#10;&#9;'tplParentRowHere' =&gt; '$type$$tplParentRowHere$',&#10;&#9;'tplParentRowActive' =&gt; '$type$$tplParentRowActive$',&#10;&#9;'tplInner' =&gt; '$type$$tplInner$',&#10;&#9;'tplInnerRow' =&gt; '$type$$tplInnerRow$',&#10;&#9;'tplInnerHere' =&gt; '$type$$tplInnerHere$'&#10;]}" description="pdoMenu" toReformat="false" toShortenFQNames="true">
     <variable name="parents" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <variable name="level" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <variable name="includeTVs" expression="" defaultValue="" alwaysStopAt="true" />
@@ -64,7 +64,7 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-block" value="{block '$NAME$'}&#10;    $CODE$&#10;{/block}&#10;{$END$}" description="block fenom" toReformat="false" toShortenFQNames="true">
+  <template name="mf-block" value="{block '$NAME$'}&#10;    $CODE$&#10;{/block}&#10;$END$" description="block fenom" toReformat="false" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="&quot;content&quot;" alwaysStopAt="true" />
     <variable name="CODE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -182,13 +182,15 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-crumbs" value="{'!pdoCrumbs' | snippet: [&#10;    'outputSeparator' =&gt; '$outputSeparator$',&#10;&#9;'tpl' =&gt; '$type$$tpl$',&#10;&#9;'tplCurrent' =&gt; '$type$$tplCurrent$',&#10;&#9;'showCurrent' =&gt; '$showCurrent$',&#10;&#9;'showHome' =&gt; '$showHome$',&#10;&#9;'showLog' =&gt; '$showLog$'$param$&#10;]}&#10;$END$" description="pdoCrumbs" toReformat="false" toShortenFQNames="true">
+  <template name="mf-pdoCrumbs" value="{'!pdoCrumbs' | snippet: [&#10;    'outputSeparator' =&gt; '$outputSeparator$',&#10;&#9;'tpl' =&gt; '$type$$tpl$',&#10;&#9;'tplCurrent' =&gt; '$type$$tplCurrent$',&#10;&#9;'tplWrapper' =&gt; '$type$$tplWrapper$',&#10;&#9;'showCurrent' =&gt; $showCurrent$,&#10;&#9;'showHome' =&gt; $showHome$,&#10;&#9;'showAtHome' =&gt; $showAtHome$,&#10;&#9;'showLog' =&gt; $showLog$,&#10;&#9;'elementsPath' =&gt; '/core/elements/chunks/breadcrumb/'$param$&#10;]}&#10;$END$" description="pdoCrumbs" toReformat="false" toShortenFQNames="true">
     <variable name="outputSeparator" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="type" expression="enum(&quot;@INLINE &quot;,&quot;@FILE &quot;,&quot;@TEMPLATE&quot;,&quot;@CODE &quot;,&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
     <variable name="tpl" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="type" expression="enum(&quot;@INLINE &quot;,&quot;@FILE&quot;,&quot;@TEMPLATE&quot;,&quot;@CODE &quot;,&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
     <variable name="tplCurrent" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="showCurrent" expression="enum(&quot;1&quot;,&quot;0&quot;)" defaultValue="" alwaysStopAt="true" />
-    <variable name="showHome" expression="enum(&quot;1&quot;,&quot;0&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="tplWrapper" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="showCurrent" expression="enum(&quot;1&quot;,&quot;0&quot;)" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
+    <variable name="showHome" expression="enum(&quot;1&quot;,&quot;0&quot;)" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
+    <variable name="showAtHome" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <variable name="showLog" expression="enum(&quot;0&quot;,&quot;1&quot;)" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <variable name="param" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -197,7 +199,7 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-pdomenu" value="{'!pdoMenu' | snippet: [&#10;    'parents' =&gt;'$parents$',&#10;&#9;'level'=&gt;'$level$',&#10;&#9;'includeTVs' =&gt; '$includeTVs$',&#10;&#9;'tvPrefix' =&gt; '$tvPrefix$',&#10;&#9;'tpl' =&gt; '$type$$tpl$',&#10;&#9;'tplOuter' =&gt; '$type$$tplOuter$',&#10;&#9;'tplHere' =&gt; '$type$$tplHere$',&#10;&#9;'tplParentRow' =&gt; '$type$$tplParentRow$',&#10;&#9;'tplParentRowHere' =&gt; '$type$$tplParentRowHere$',&#10;&#9;'tplParentRowActive' =&gt; '$type$$tplParentRowActive$',&#10;&#9;'tplInner' =&gt; '$type$$tplInner$',&#10;&#9;'tplInnerRow' =&gt; '$type$$tplInnerRow$',&#10;&#9;'tplInnerHere' =&gt; '$type$$tplInnerHere$'&#10;]}" description="pdoMenu" toReformat="false" toShortenFQNames="true">
+  <template name="mf-pdoMenu" value="{'!pdoMenu' | snippet: [&#10;    'parents' =&gt;'$parents$',&#10;&#9;'level'=&gt;'$level$',&#10;&#9;'includeTVs' =&gt; '$includeTVs$',&#10;&#9;'tvPrefix' =&gt; '$tvPrefix$',&#10;&#9;'tpl' =&gt; '$type$$tpl$',&#10;&#9;'tplOuter' =&gt; '$type$$tplOuter$',&#10;&#9;'tplHere' =&gt; '$type$$tplHere$',&#10;&#9;'tplParentRow' =&gt; '$type$$tplParentRow$',&#10;&#9;'tplParentRowHere' =&gt; '$type$$tplParentRowHere$',&#10;&#9;'tplParentRowActive' =&gt; '$type$$tplParentRowActive$',&#10;&#9;'tplInner' =&gt; '$type$$tplInner$',&#10;&#9;'tplInnerRow' =&gt; '$type$$tplInnerRow$',&#10;&#9;'tplInnerHere' =&gt; '$type$$tplInnerHere$',&#10;&#9;'elementsPath' =&gt; '$element$'&#10;]}&#10;$END$" description="pdoMenu" toReformat="false" toShortenFQNames="true">
     <variable name="parents" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <variable name="level" expression="" defaultValue="&quot;0&quot;" alwaysStopAt="true" />
     <variable name="includeTVs" expression="" defaultValue="" alwaysStopAt="true" />
@@ -212,13 +214,14 @@
     <variable name="tplInner" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="tplInnerRow" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="tplInnerHere" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="element" expression="" defaultValue="&quot;/core/elements/chunks/&quot;" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="TPL" value="true" />
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-res" value="{$_modx-&gt;resource.$CODE$}{$END$}" description="Resource" toReformat="false" toShortenFQNames="true">
+  <template name="mf-res" value="{$_modx-&gt;resource.$CODE$}$END$" description="Resource" toReformat="false" toShortenFQNames="true">
     <variable name="CODE" expression="enum(&quot;pagetitle&quot;,&quot;longtitle&quot;,&quot;description&quot;,&quot;content&quot;,&quot;id&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
@@ -233,7 +236,7 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-forin" value="{if $if$ |in:[$resource$]}&#10;    $output$&#10;{/if}&#10;$END$" toReformat="false" toShortenFQNames="true">
+  <template name="mf-forin" value="{if $if$ |in:[$resource$]}&#10;    $output$&#10;{/if}&#10;$END$" description="" toReformat="false" toShortenFQNames="true">
     <variable name="if" expression="" defaultValue="&quot;$_modx-&gt;resource.id&quot;" alwaysStopAt="true" />
     <variable name="resource" expression="" defaultValue="&quot;1,2,3&quot;" alwaysStopAt="true" />
     <variable name="output" expression="" defaultValue="" alwaysStopAt="true" />
@@ -242,7 +245,7 @@
       <option name="Twig" value="true" />
     </context>
   </template>
-  <template name="mf-config" value="{$_modx-&gt;config.$param$}" toReformat="false" toShortenFQNames="true">
+  <template name="mf--config" value="{$_modx-&gt;config.$param$}" description="" toReformat="false" toShortenFQNames="true">
     <variable name="param" expression="enum(&quot;cultureKey&quot;,&quot;site_url&quot;,&quot;modx_charset&quot;,&quot;site_name&quot;,&quot;modx_charset&quot;,&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
@@ -391,6 +394,13 @@
     <context>
       <option name="HTML" value="true" />
       <option name="TPL" value="true" />
+      <option name="Twig" value="true" />
+    </context>
+  </template>
+  <template name="mf-config" value="{'$param$' | config}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="param" expression="enum(&quot;cultureKey&quot;,&quot;site_url&quot;,&quot;modx_charset&quot;,&quot;site_name&quot;,&quot;modx_charset&quot;,&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
       <option name="Twig" value="true" />
     </context>
   </template>
